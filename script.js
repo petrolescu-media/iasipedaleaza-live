@@ -194,7 +194,6 @@ map.locate({ setView: false, watch: true, maxZoom: 16 });
 
 function onLocationError(e) {
     console.error('Geolocation error: ' + e.message);
-    alert('Geolocation error: ' + e.message);
 }
 map.on('locationerror', onLocationError);
 
