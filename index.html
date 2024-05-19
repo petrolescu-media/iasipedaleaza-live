@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,12 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="statii.css" />
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+    <link href="https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css" rel="stylesheet" />
+    <link href="https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css" rel="stylesheet" />
+
 </head>
+
 <body>
     <div id="map">
         <div id="controls">
@@ -24,8 +30,12 @@
                     <option value="6">[ 6 ] Podul Ros - Pacurari</option>
                     <option value="7">[ 7 ] Podul Ros - Canta</option>
                     <option value="8">[ 8 ] Podul Ros - Dacia</option>
-                    <option value="9">Traseu 6</option>
-                    <option value="10">Traseu 7</option>
+                    <option value="9">[ 9 ] Podul Ros - Tutora</option>
+                    <option value="10">[ 10 ] Podul Ros - Ciric via Targu Cucu</option>
+                    <option value="11">[ 11 ] Podul Ros - Ciric via Tatarasi Sud</option>
+                    <option value="12">[ 12 ] Podul Ros - Lac Cug 2 Valea Adanca</option>
+                    <option value="13">[ 13 ] Tehnopolis - Copou</option>
+                    <option value="14">[ 14 ] Tehnopolis - Ciric via Podul Ros</option>
                 </select>
             </div>
             <div id="nearest-routes">
@@ -40,8 +50,11 @@
         </div>
         <button id="center-toggle">Center</button>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+        integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
     <script src="trasee.js"></script>
 </body>
+
 </html>

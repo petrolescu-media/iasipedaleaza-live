@@ -3,65 +3,19 @@ var map = L.map('map', {
     zoomControl: false
 });
 
+map.locate({ 
+    setView: false, 
+    watch: true, 
+    maxZoom: 16, 
+    timeout: 60000,  // 60 seconds
+    maximumAge: 300000,  // 5 minutes
+    enableHighAccuracy: true 
+});
+
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
-
-// Define routes with multiple lines and stations
-var routes = {
-    1: {
-        color: 'red',
-        points: [
-            [47.1585, 27.6014], 
-            [47.1600, 27.6020], 
-            [47.1620, 27.6040]
-        ],
-        stops: [
-            { name: "Stop 1", coords: [47.1585, 27.6014], time: 0 },
-            { name: "Stop 2", coords: [47.1600, 27.6020], time: 2 },
-            { name: "Stop 3", coords: [47.1620, 27.6040], time: 5 }
-        ]
-    },
-    2: {
-        color: 'blue',
-        points: [
-            [47.1585, 27.6014], 
-            [47.1590, 27.6050], 
-            [47.1610, 27.6070]
-        ],
-        stops: [
-            { name: "Stop A", coords: [47.1585, 27.6014], time: 0 },
-            { name: "Stop B", coords: [47.1590, 27.6050], time: 3 },
-            { name: "Stop C", coords: [47.1610, 27.6070], time: 6 }
-        ]
-    },
-    3: {
-        color: 'green',
-        points: [
-            [47.1585, 27.6014], 
-            [47.1595, 27.6030], 
-            [47.1605, 27.6060]
-        ],
-        stops: [
-            { name: "Stop X", coords: [47.1585, 27.6014], time: 0 },
-            { name: "Stop Y", coords: [47.1595, 27.6030], time: 4 },
-            { name: "Stop Z", coords: [47.1605, 27.6060], time: 8 }
-        ]
-    },
-    4: {
-        color: 'purple',
-        points: [
-            [47.1570, 27.6000], 
-            [47.1580, 27.6020], 
-            [47.1590, 27.6050]
-        ],
-        stops: [
-            { name: "Stop Alpha", coords: [47.1570, 27.6000], time: 0 },
-            { name: "Stop Beta", coords: [47.1580, 27.6020], time: 2 },
-            { name: "Stop Gamma", coords: [47.1590, 27.6050], time: 4 }
-        ]
-    }
-};
 
 var routeLayer;
 var markers = [];
@@ -71,15 +25,15 @@ var initialLocationFound = false;
 
 // Custom icons
 var stopIcon = L.icon({
-    iconUrl: 'path/to/bus_stop_icon.png', // Replace with the path to your bus stop icon image
-    iconSize: [25, 41], // Size of the icon
-    iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
+    iconUrl: 'https://i.imgur.com/FMNRVUV.png', // Replace with the path to your bus stop icon image
+    iconSize: [40, 40], // Size of the icon
+    iconAnchor: [20, 41], // Point of the icon which will correspond to marker's location
     popupAnchor: [0, -41] // Point from which the popup should open relative to the iconAnchor
 });
 
 var userIcon = L.icon({
-    iconUrl: 'path/to/user_location_icon.png', // Replace with the path to your user location icon image
-    iconSize: [25, 41], // Size of the icon
+    iconUrl: 'https://i.imgur.com/Y1N7ofp.png', // Replace with the path to your user location icon image
+    iconSize: [40, 40], // Size of the icon
     iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
     popupAnchor: [0, -41] // Point from which the popup should open relative to the iconAnchor
 });
@@ -93,13 +47,12 @@ function clearMap() {
     markers = [];
 }
 
-// Function to show selected route
 function showRoute(routeId) {
     clearMap();
     if (!routes[routeId]) return;
 
     var route = routes[routeId];
-    routeLayer = L.polyline(route.points, { color: route.color }).addTo(map);
+    routeLayer = L.polyline(route.points, { color: route.color, weight: 7 }).addTo(map); // Set weight to desired thickness
     route.stops.forEach(stop => {
         var marker = L.marker(stop.coords, { icon: stopIcon }).addTo(map).bindPopup(stop.name);
         markers.push(marker);
@@ -107,6 +60,7 @@ function showRoute(routeId) {
 
     findAndShowNearestStation(routeId);
 }
+
 
 // Function to find nearest station on selected route and calculate bike time
 function findAndShowNearestStation(routeId) {
@@ -220,7 +174,7 @@ function onLocationFound(e) {
         userCircle.setLatLng(e.latlng).setRadius(radius);
     }
 
-    if (!initialLocationFound) {
+    if (centerOnUser || !initialLocationFound) {
         map.setView(e.latlng, 16);
         initialLocationFound = true;
     }
@@ -232,6 +186,9 @@ function onLocationFound(e) {
         findAndShowNearestStation(selectedRouteId);
     }
 }
+
+document.getElementById('center-toggle').addEventListener('click', toggleCenterOnUser);
+
 map.on('locationfound', onLocationFound);
 map.locate({ setView: false, watch: true, maxZoom: 16 });
 
@@ -240,4 +197,19 @@ function onLocationError(e) {
     alert('Geolocation error: ' + e.message);
 }
 map.on('locationerror', onLocationError);
+
+var centerOnUser = false;
+
+function toggleCenterOnUser() {
+    centerOnUser = !centerOnUser;
+    var button = document.getElementById('center-toggle');
+    if (centerOnUser) {
+        button.textContent = 'Disable';
+        if (userMarker) {
+            map.setView(userMarker.getLatLng(), 16);
+        }
+    } else {
+        button.textContent = 'Center';
+    }
+}
 
