@@ -1,0 +1,114 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
+#controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: transparent; /* Keep this line */
+    z-index: 1000; /* Ensure it's above the map */
+}
+
+#route-select-container {
+    background-color: #6be88c;
+    opacity: 80%;
+    font-family: 'Raleway';font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80%;
+    margin: 15px auto;
+    top: 90px; 
+}
+
+#route-select {
+    width: 100%;
+    padding: 5px;
+    font-size: 1em;
+    background-color: #6be88c;
+    opacity: 80%;
+    font-family: 'Raleway';
+    top: 90px; 
+}
+
+#nearest-routes {
+    background-color: #6be88c;
+    opacity: 80%;
+    font-family: 'Raleway';font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+    position: absolute;
+    top: 90px; 
+    left: 10px;
+    z-index: 1000; /* Ensure it's above the map */
+}
+
+#arrival-time {
+    background-color: #6be88c;
+    opacity: 80%;
+    font-family: 'Raleway';font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+    position: absolute;
+    top: 90px; 
+    right: 10px;
+    z-index: 1000; /* Ensure it's above the map */
+}
+
+#nearest-routes h4, #arrival-time h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+}
+
+#nearby-lines div {
+    background-color: #6be88c;
+    color: white;
+    padding: 5px;
+    margin: 2px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#arrival-time-clock {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#center-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #6be88c;
+    opacity: 80%;
+    font-family: 'Raleway';
+    font-size: 15px;
+    z-index: 1000;
+    top: 80%;
+    left: 5px;
+    border-radius: 5px;
+    border: none;
+}

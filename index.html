@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Routes Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="statii.css" />
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+</head>
+<body>
+    <div id="map">
+        <div id="controls">
+            <div id="route-select-container">
+                <select id="route-select">
+                    <option value="">Selectează traseul</option>
+                    <option value="1">[ 1 ] Podul Ros - Copou</option>
+                    <option value="2">[ 2 ] Podul Ros - Tehnopolis</option>
+                    <option value="3">[ 3 ] Podul Ros - Targu Cucu via CNVA</option>
+                    <option value="4">[ 4A ] Podul Ros - Tatarasi Nord via Targu Cucu</option>
+                    <option value="B4">[ 4B ] Podul Ros - Tatarasi Nord via Metarlugie</option>
+                    <option value="5">[ 5 ] Podul Ros - Bucium</option>
+                    <option value="6">[ 6 ] Podul Ros - Pacurari</option>
+                    <option value="7">[ 7 ] Podul Ros - Canta</option>
+                    <option value="8">[ 8 ] Podul Ros - Dacia</option>
+                    <option value="9">Traseu 6</option>
+                    <option value="10">Traseu 7</option>
+                </select>
+            </div>
+            <div id="nearest-routes">
+                <h4>Trasee în Apropiere</h4>
+                <div id="nearby-lines"></div>
+            </div>
+            <div id="arrival-time">
+                <h4>Următoarea stație</h4>
+                <div id="station-name"></div>
+                <div id="arrival-time-clock"></div>
+            </div>
+        </div>
+        <button id="center-toggle">Center</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+    <script src="trasee.js"></script>
+</body>
+</html>
